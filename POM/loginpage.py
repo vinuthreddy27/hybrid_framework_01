@@ -3,9 +3,9 @@ from DemowebShop.library.basepage import Base
 
 
 class LoginPage(Base):
-    email=("css selector","#Email")
+    email=("id","Email")
     password=("xpath","//input[@name='Password']")
-    login_btn=("xpath","//button[@value='Log in']")
+    login_btn=("xpath","//input[@value='Log in']")
 
 
     def login_into_application(self):
