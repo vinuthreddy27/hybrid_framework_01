@@ -5,21 +5,17 @@ from selenium import webdriver
 from DemowebShop.configurations.config import TestData
 
 
-@pytest.fixture(params=["chrome"],scope="class")
+@pytest.fixture(params=["chrome","firefox","edge"],scope="class")
 def get_browser(request):
     global driver
     if request.param=="chrome":
         driver=webdriver.Chrome()
-
     elif request.param=="firefox":
         driver=webdriver.Firefox()
-
     elif request.param == "edge":
         driver = webdriver.Edge()
-
     else:
         print("provide valid browser")
-
     driver.get(TestData.base_url)
     driver.delete_all_cookies()
     driver.maximize_window()

@@ -1,5 +1,8 @@
+
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.expected_conditions import presence_of_element_located, visibility_of_element_located
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -10,7 +13,6 @@ class Base:
         self.wait=WebDriverWait(self.driver,7)
         self.actions=ActionChains(self.driver)
 
-
     def click_on_element(self,locator):
         element=self.wait.until(presence_of_element_located((locator)))
         element.click()
@@ -19,11 +21,6 @@ class Base:
         element = self.wait.until(presence_of_element_located(locator))
         element.clear()
         element.send_keys(text)
-
-
-    def visiblity(self,locator):
-        element=self.wait.until(visibility_of_element_located(locator))
-        return element
 
     def hover(self,locator):
         element=self.wait.until(presence_of_element_located(locator))
@@ -41,3 +38,20 @@ class Base:
     def display_status(self,locator):
         element=self.wait.until(visibility_of_element_located(locator))
         return element.is_displayed()
+
+    def scroll(self,x,y):
+        self.actions.scroll_by_amount(x,y).perform()
+
+    def select_an_option(self,locator,value):
+        dropdown=self.wait.until(presence_of_element_located(locator))
+        s1=Select(dropdown)
+        s1.select_by_visible_text(value)
+
+    def select_an_by_index(self, locator, index):
+        dropdown = self.wait.until(presence_of_element_located(locator))
+        s1 = Select(dropdown)
+        s1.select_by_index(index)
+
+    def get_text(self,locator):
+        element=self.wait.until(visibility_of_element_located(locator))
+        print(element.text)

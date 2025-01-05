@@ -3,6 +3,7 @@ from DemowebShop.library.basepage import Base
 
 
 class LoginPage(Base):
+
     email=("id","Email")
     password=("xpath","//input[@name='Password']")
     login_btn=("xpath","//input[@value='Log in']")

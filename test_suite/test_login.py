@@ -7,3 +7,4 @@ def test_login(get_browser):
     login_page.login_into_application()
 
 
+

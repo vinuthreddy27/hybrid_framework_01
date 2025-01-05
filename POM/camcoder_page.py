@@ -3,6 +3,7 @@ from DemowebShop.library.basepage import Base
 
 
 class CamcoderPage(Base):
+
     compare_btn = ("xpath", "//*[@value='Add to compare list']")
 
     def click_on_compare_btn(self):

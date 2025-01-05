@@ -10,7 +10,6 @@ class ComparePage(Base):
     def click_on_removeBtn(self):
         self.click_on_element(self.remove_btn)
 
-
     def click_on_removeBtn2(self):
         self.click_on_element(self.remove_btn2)
 
