@@ -5,6 +5,7 @@ from DemowebShop.POM.enquiry_page import ContactUsPage
 from DemowebShop.POM.loginpage import LoginPage
 from DemowebShop.POM.myaccountpage import MyaccountPage
 from DemowebShop.POM.register_page import RegisterPage
+from DemowebShop.POM.shoes_page import ShoesPage
 from DemowebShop.POM.shoopingCart_page import ShoppingPage
 from DemowebShop.library.basepage import Base
 
@@ -12,32 +13,22 @@ from DemowebShop.library.basepage import Base
 class HomePage(Base):
 
     register_link=("css selector","a[href='/register']")
-
     login_link=("xpath","//a[.='Log in']")
-
     electronics_link=("xpath","//ul[@class='top-menu']//a[@href='/electronics']")
-
     camera_option=("xpath","//ul[@class='top-menu']//a[@href='/camera-photo']")
-
     logout_link=("xpath","//a[.='Log out']")
-
     search_textfield=("id","small-searchterms")
-
     search_btn=("xpath","//input[@value='Search']")
-
     shopping_cart=("xpath","//*[.='Shopping cart']")
-
     books_link=("xpath","//ul[@class='top-menu']//a[@href='/books']")
-
     contact_us_locator = ("xpath", "//a[.='Contact us']")
-
     computers_link=("xpath","//ul[@class='top-menu']//*[@href='/computers']")
-
     dekstop_link=("xpath","//ul[@class='top-menu']//a[@href='/desktops']")
-
     my_account_link=("xpath","//a[.='My account']")
-
     jewelary_link=("xpath","//ul[@class='top-menu']//a[@href='/jewelry']")
+    shoes_link=("xpath","//a[@href='/apparel-shoes']/ancestor::ul[@class='top-menu']")
+
+    out_of_stock_msg=("xpath","//p[normalize-space(.)='Out of stock']")
 
     def click_register_link(self):
         self.click_on_element(self.register_link)
@@ -104,7 +95,20 @@ class HomePage(Base):
         return contacts_page
 
     def message(self):
+        self.get_text(self.login_link)
         return self.display_status(self.login_link)
 
     def click_on_jewelary(self):
         self.click_on_element(self.jewelary_link)
+
+
+    def click_on_shoes(self):
+        self.click_on_element(self.shoes_link)
+
+        shoes_page=ShoesPage(self.driver)
+        return shoes_page
+
+
+    def out_of_Stock_msg(self):
+        self.display_status(self.out_of_stock_msg)
+        self.get_text(self.out_of_stock_msg)

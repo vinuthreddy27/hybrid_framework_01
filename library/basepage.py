@@ -1,7 +1,8 @@
 
 
 from selenium.webdriver import ActionChains
-from selenium.webdriver.support.expected_conditions import presence_of_element_located, visibility_of_element_located
+from selenium.webdriver.support.expected_conditions import presence_of_element_located, visibility_of_element_located, \
+    alert_is_present
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -55,3 +56,11 @@ class Base:
     def get_text(self,locator):
         element=self.wait.until(visibility_of_element_located(locator))
         print(element.text)
+
+    def accept_alert(self):
+        element = self.wait.until(alert_is_present())
+        element.accept()
+
+    def dismiss_alert(self):
+        element=self.driver.switch_to.alert
+        element.accept()

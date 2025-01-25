@@ -1,5 +1,4 @@
 import pytest
-
 from DemowebShop.POM.homepage import HomePage
 from DemowebShop.utilities.excel_reader import get_data_from_excel
 

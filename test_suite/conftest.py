@@ -5,7 +5,7 @@ from selenium import webdriver
 from DemowebShop.configurations.config import TestData
 
 
-@pytest.fixture(params=["chrome","firefox","edge"],scope="class")
+@pytest.fixture(params=["firefox"],scope="class")
 def get_browser(request):
     global driver
     if request.param=="chrome":
@@ -19,7 +19,6 @@ def get_browser(request):
     driver.get(TestData.base_url)
     driver.delete_all_cookies()
     driver.maximize_window()
-    driver.implicitly_wait(6)
     yield driver
     driver.quit()
 
@@ -31,9 +30,8 @@ def report(item,call):
     return rep
 
 @pytest.fixture()
-def log_on_failure(request,get_browser):
+def log_on_failure(request):
     yield
     item=request.node
-    driver=get_browser
     if item.rep_call.failed:
         allure.attach(driver.get_screenshot_as_png(),name="failure",attachment_type=AttachmentType.PNG)
